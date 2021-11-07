@@ -1,0 +1,51 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "warn", { "usePrettierrc": true }],
+    "eqeqeq": [
+      "warn", "smart"
+    ],
+    "no-unused-vars": [
+      "off"
+    ],
+    "react/prefer-stateless-function": [
+      "off"
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [
+      ".js", ".jsx"
+    ] }],
+    "no-empty-pattern": [
+      "off"
+    ],
+    "import/named": "off",
+    "import/no-unresolved": "off",
+    "no-unreachable": "off",
+    "quotes": ["error", "single"],
+    "comma-dangle": ["error", "never"],
+    "semi": ["error", "never"]
+  }
+}
