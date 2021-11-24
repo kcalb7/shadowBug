@@ -25,7 +25,8 @@
   ],
   "rules": {
     "prettier/prettier": [
-      "warn", { "usePrettierrc": true }],
+      "warn", { "usePrettierrc": true }
+    ],
     "eqeqeq": [
       "warn", "smart"
     ],
@@ -35,9 +36,9 @@
     "react/prefer-stateless-function": [
       "off"
     ],
-    "react/jsx-filename-extension": [1, { "extensions": [
-      ".js", ".jsx"
-    ] }],
+    "react/jsx-filename-extension": [
+      1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
     "no-empty-pattern": [
       "off"
     ],
