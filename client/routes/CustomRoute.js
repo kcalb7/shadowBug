@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Route } from 'react-router-dom'
+import { Container } from '../components'
 // import PropTypes from 'prop-types';
 // import { Context } from '../../Context/authContext';
 // import { CustomModal } from '../../components/Loading/styles';
@@ -22,7 +23,9 @@ const CustomRoute = ({ ...rest }) => {
     // <>
     //   {showAppNavbar() && <NavbarApp />}
     //   {showAdminNavbar() && <NavbarAdmin />}
-    <Route exact={rest.exact} path={rest.path} component={rest.component} />
+    <Container>
+      <Route exact={rest.exact} path={rest.path} component={rest.component} />
+    </Container>
     //  <FooterApp />
     // </>
   )
