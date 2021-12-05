@@ -1,3 +1,5 @@
+import React from 'react'
+
 export type ContainerProps = {
-  children?: any
+  children: React.ReactNode
 }
