@@ -1,8 +1,8 @@
 export type FrameBugsProps = {
   children?: any
+  matched?: boolean
   draggable?: boolean
   bug: Bug
-  onDragLeave?: Function
   onDragEnd?: Function
   onDragOver?: Function
 }

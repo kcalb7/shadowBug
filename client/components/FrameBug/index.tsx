@@ -1,20 +1,17 @@
 import React from 'react'
 import { FrameBugsProps } from './types'
-import { Frame } from './styles'
+import { Frame, FrameMatched } from './styles'
 
-export const FrameBug = ({
-  draggable,
-  bug,
-  onDragLeave,
-  onDragEnd,
-  onDragOver
-}: FrameBugsProps) => (
-  <Frame
-    value={bug.id}
-    draggable={draggable}
-    img={bug.img}
-    onDragLeave={onDragLeave}
-    onDragEnd={onDragEnd}
-    onDragOver={onDragOver}
-  />
-)
+export const FrameBug = ({ matched, draggable, bug, onDragEnd, onDragOver }: FrameBugsProps) => {
+  if (matched) return <FrameMatched value={bug.id} img={bug.img} />
+
+  return (
+    <Frame
+      value={bug.id}
+      draggable={draggable}
+      img={bug.img}
+      onDragEnd={onDragEnd}
+      onDragOver={onDragOver}
+    />
+  )
+}

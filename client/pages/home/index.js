@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { ColBugs } from '../../components'
+import { ColBugs, FrameBug } from '../../components'
 import { colors } from '../../utils/colors'
 import { bugs as BugObject } from '../../enums'
+import { categories } from '../../enums'
 
 const Home = () => {
   const [list, setList] = useState([])
@@ -21,17 +22,22 @@ const Home = () => {
     let Shadows = []
     let Infos = []
     BugObject.forEach(b => {
-      Bugs.push({ id: b.id, img: b.img['bug'] })
-      Shadows.push({ id: b.id, img: b.img['shadow'] })
-      Infos.push({ id: b.id, img: b.img['bugInfo'] })
+      if (!b.matched) {
+        Bugs.push({ id: b.id, img: b.img['bug'] })
+        Shadows.push({ id: b.id, img: b.img['shadow'] })
+      } else Infos.push({ id: b.id, img: b.img['bugInfo'], categoryId: b.categoryId })
     })
     setBugs(Bugs)
     setShadows(Shadows)
     setInfos(Infos)
   }
 
-  const onDragLeave = () => {
-    // setSelected(null)
+  const match = id => {
+    const update = list.map(l => {
+      l.matched = l.matched || l.id.toString() === id
+      return l
+    })
+    setList(update)
   }
 
   const onDragEnd = ({
@@ -41,7 +47,7 @@ const Home = () => {
       }
     }
   }) => {
-    if (selected === value) alert('ok')
+    if (selected === value) match(selected)
     setSelected(null)
   }
 
@@ -67,12 +73,33 @@ const Home = () => {
           <ColBugs draggable bugs={bugs} onDragEnd={onDragEnd} />
         </Col>
         <Col className={'d-flex justify-content-center'}>
-          <ColBugs bugs={infos} />
-        </Col>
-        <Col className={'d-flex justify-content-center'}>
-          <ColBugs bugs={shadows} onDragOver={onDragOver} onDragLeave={onDragLeave} />
+          <ColBugs bugs={shadows} onDragOver={onDragOver} />
         </Col>
       </Row>
+      <Row>
+        <Col className={'d-flex justify-content-center'}>
+          <h1 style={{ color: colors.primaryLight.text }}>Catálogo</h1>
+        </Col>
+      </Row>
+
+      {categories.map(c => (
+        <div key={c.id}>
+          <Row>
+            <Col className={'d-flex justify-content-center'}>
+              <h1 style={{ color: colors.primaryLight.text }}>{c.name}</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={{ span: 6, offset: 3 }} className={'d-flex justify-content-start'}>
+              {infos
+                .filter(l => l.categoryId === c.id)
+                .map(m => (
+                  <FrameBug key={m.id} bug={m} matched />
+                ))}
+            </Col>
+          </Row>
+        </div>
+      ))}
     </>
   )
 }
