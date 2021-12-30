@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react'
 import authServices from '../../services/auth'
 import jwt from 'jsonwebtoken'
-import PropTypes from 'prop-types'
+import { AuthProps, AuthContext as ContextProps } from '../../types'
 
-const Context = createContext(undefined)
+const AuthContext = createContext<ContextProps | null>(null)
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }: AuthProps) => {
   const [auth, setAuth] = useState(true)
   const [loading, setLoading] = useState(false)
 
@@ -13,9 +13,10 @@ const AuthProvider = ({ children }) => {
 
   function checkLogin() {
     const token = localStorage.getItem('token')
-    const dataToken = token && jwt.decode(token)
+    const dataToken: any = token && jwt.decode(token)
 
-    if (dataToken && dataToken.exp > (new Date().getTime() + 1) / 1000 && dataToken.data) {
+    const { exp, data } = dataToken
+    if (dataToken && exp > (new Date().getTime() + 1) / 1000 && data) {
       setAuth(true)
     } else {
       setAuth(false)
@@ -24,7 +25,7 @@ const AuthProvider = ({ children }) => {
     setLoading(false)
   }
 
-  const handleLogin = async user => {
+  const handleLogin = async (user: object) => {
     const response = await authServices.login(user)
 
     if (response && response.ok && response.data) {
@@ -37,7 +38,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const handleLogout = async () => {
-    localStorage.setItem('token', null)
+    localStorage.removeItem('token')
     setAuth(false)
     window.location.href = '/login'
     checkLogin()
@@ -45,12 +46,10 @@ const AuthProvider = ({ children }) => {
   }
 
   return (
-    <Context.Provider value={{ auth, handleLogin, handleLogout, loading, checkLogin }}>
+    <AuthContext.Provider value={{ auth, handleLogin, handleLogout, loading, checkLogin }}>
       {children}
-    </Context.Provider>
+    </AuthContext.Provider>
   )
 }
 
-AuthProvider.propTypes = { children: PropTypes.any }
-
-export { Context, AuthProvider }
+export { AuthContext, AuthProvider }

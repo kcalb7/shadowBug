@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { ColBugs, FrameBug } from '../../components'
+import { DefaultStatesContext } from '../../contexts/defaultStates'
 import { colors } from '../../utils/colors'
 import { bugs as BugObject } from '../../enums'
 import { categories } from '../../enums'
+import { BugBasicInfo, BugFullInfo, BugMinInfo } from '../../types'
 
 const Home = () => {
-  const [list, setList] = useState([])
-  const [bugs, setBugs] = useState([])
-  const [shadows, setShadows] = useState([])
-  const [infos, setInfos] = useState([])
+  const [list, setList] = useState<BugFullInfo[]>([])
+  const [bugs, setBugs] = useState<BugMinInfo[]>([])
+  const [shadows, setShadows] = useState<BugMinInfo[]>([])
+  const [infos, setInfos] = useState<BugBasicInfo[]>([])
   const [selected, setSelected] = useState(null)
+
+  const { setModal }: any = useContext(DefaultStatesContext)
 
   useEffect(() => {
     setList(BugObject)
@@ -18,13 +22,13 @@ const Home = () => {
   }, [list])
 
   const prepare = () => {
-    let Bugs = []
-    let Shadows = []
-    let Infos = []
+    let Bugs: BugMinInfo[] = []
+    let Shadows: BugMinInfo[] = []
+    let Infos: BugBasicInfo[] = []
     BugObject.forEach(b => {
       if (!b.matched) {
         Bugs.push({ id: b.id, img: b.img['bug'] })
-        Shadows.push({ id: b.id, img: b.img['shadow'] })
+        Shadows.push({ id: b.id, img: b.img['bugShadow'] })
       } else Infos.push({ id: b.id, img: b.img['bugInfo'], categoryId: b.categoryId })
     })
     setBugs(Bugs)
@@ -32,7 +36,7 @@ const Home = () => {
     setInfos(Infos)
   }
 
-  const match = id => {
+  const match = (id: string | null) => {
     const update = list.map(l => {
       l.matched = l.matched || l.id.toString() === id
       return l
@@ -40,13 +44,14 @@ const Home = () => {
     setList(update)
   }
 
+  //todo: rever type
   const onDragEnd = ({
     target: {
       attributes: {
         value: { value }
       }
     }
-  }) => {
+  }: any) => {
     if (selected === value) match(selected)
     setSelected(null)
   }
@@ -57,8 +62,18 @@ const Home = () => {
         value: { value }
       }
     }
-  }) => {
+  }: any) => {
     if (selected !== value) setSelected(value)
+  }
+
+  const openModal = (category: string, id: number) => {
+    const bug = list.filter(l => l.id === id)[0]
+    setModal({
+      title: category,
+      bug,
+      toggle: true,
+      onHide: () => setModal({ toggle: false })
+    })
   }
 
   return (
@@ -82,24 +97,28 @@ const Home = () => {
         </Col>
       </Row>
 
-      {categories.map(c => (
-        <div key={c.id}>
-          <Row>
-            <Col className={'d-flex justify-content-center'}>
-              <h1 style={{ color: colors.primaryLight.text }}>{c.name}</h1>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} md={{ span: 6, offset: 3 }} className={'d-flex justify-content-start'}>
-              {infos
-                .filter(l => l.categoryId === c.id)
-                .map(m => (
-                  <FrameBug key={m.id} bug={m} matched />
-                ))}
-            </Col>
-          </Row>
-        </div>
-      ))}
+      {categories.map(c => {
+        return infos.filter(l => l.categoryId === c.id).length ? (
+          <div key={c.id}>
+            <Row>
+              <Col className={'d-flex justify-content-center'}>
+                <h1 style={{ color: colors.primaryLight.text }}>{c.name}</h1>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={{ span: 6, offset: 3 }} className={'d-flex justify-content-start'}>
+                {infos
+                  .filter(l => l.categoryId === c.id)
+                  .map(m => (
+                    <FrameBug key={m.id} bug={m} matched onClick={() => openModal(c.name, m.id)} />
+                  ))}
+              </Col>
+            </Row>
+          </div>
+        ) : (
+          <></>
+        )
+      })}
     </>
   )
 }

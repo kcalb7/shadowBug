@@ -1,5 +1,5 @@
 import React from 'react'
-import { ColBugsProps } from './types'
+import { ColBugsProps } from '../../types'
 import { FrameBug } from '../FrameBug'
 
 export const ColBugs = ({ draggable, bugs, onDragEnd, onDragOver }: ColBugsProps) => (

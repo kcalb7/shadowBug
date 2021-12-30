@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Route } from 'react-router-dom'
 import { Container } from '../components'
-// import PropTypes from 'prop-types';
+import Modal from '../components/Modal'
 // import { Context } from '../../Context/authContext';
 // import { CustomModal } from '../../components/Loading/styles';
 // import { NavbarMobile as NavbarAdmin, NavbarApp, FooterApp } from '../../components'
@@ -24,6 +24,7 @@ const CustomRoute = ({ ...rest }) => {
     //   {showAppNavbar() && <NavbarApp />}
     //   {showAdminNavbar() && <NavbarAdmin />}
     <Container>
+      <Modal />
       <Route exact={rest.exact} path={rest.path} component={rest.component} />
     </Container>
     //  <FooterApp />
