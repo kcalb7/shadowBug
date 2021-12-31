@@ -58,6 +58,15 @@ export type FrameBugsProps = {
   onDragOver?: Function
   onClick?: Function
 }
+
+export type Modal = {
+  title: string
+  bug?: BugFullInfo | object
+  toggle: boolean
+  onHide?: object
+  confirm?: object
+  cancel?: object
+}
 // components end
 
 // contexts
@@ -82,12 +91,18 @@ export interface DefaultStatesContext {
   setModal: object
 }
 
-export type Modal = {
-  title: string
-  bug?: BugFullInfo | object
-  toggle: boolean
-  onHide?: object
-  confirm?: object
-  cancel?: object
+export type BugsProps = {
+  children?: React.ReactNode
+}
+
+export interface BugsContext {
+  list: BugFullInfo[]
+  setList: (value: BugFullInfo[]) => void
+  bugs: BugMinInfo[]
+  setBugs: (value: BugMinInfo[]) => void
+  shadows: BugMinInfo[]
+  setShadows: (value: BugMinInfo[]) => void
+  infos: BugBasicInfo[]
+  setInfos: (value: BugBasicInfo[]) => void
 }
 // contexts end
