@@ -37,7 +37,7 @@ export type BugFullInfo = {
   img: BugImages
 }
 
-export type ContainerProps = {
+export type BodyProps = {
   children: React.ReactNode
 }
 
@@ -50,7 +50,7 @@ export type ColBugsProps = {
 }
 
 export type FrameBugsProps = {
-  children?: any
+  children?: React.ReactNode
   matched?: boolean
   draggable?: boolean
   bug: BugMinInfo
@@ -59,13 +59,20 @@ export type FrameBugsProps = {
   onClick?: Function
 }
 
+export type ButtonProps = {
+  text: string
+  to?: string
+  blank?: boolean
+  onClick?: Function
+}
+
 export type Modal = {
   title: string
   bug?: BugFullInfo | object
   toggle: boolean
-  onHide?: object
-  confirm?: object
-  cancel?: object
+  onHide?: Function
+  confirm?: Function
+  cancel?: Function
 }
 // components end
 
@@ -76,10 +83,10 @@ export type AuthProps = {
 
 export interface AuthContext {
   auth: boolean
-  handleLogin: object
-  handleLogout: object
+  handleLogin: Function
+  handleLogout: Function
   loading: boolean
-  checkLogin: object
+  checkLogin: Function
 }
 
 export type DefaultStatesProps = {
@@ -87,8 +94,9 @@ export type DefaultStatesProps = {
 }
 
 export interface DefaultStatesContext {
-  modal: Modal | null
-  setModal: object
+  modal: Modal | object
+  setModal: Function
+  pushHistory: Function
 }
 
 export type BugsProps = {

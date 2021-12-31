@@ -1,3 +1,5 @@
-export { default as Container } from './Container'
+export { Body } from './Body'
+export { Header } from './Header'
 export { ColBugs } from './ColBugs'
 export { FrameBug } from './FrameBug'
+export { Button } from './Button'

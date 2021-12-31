@@ -1,7 +1,14 @@
 import React, { createContext, useState } from 'react'
 import { DefaultStatesProps, DefaultStatesContext as ContextProps, Modal } from '../../types'
+import { useHistory } from 'react-router-dom'
 
-const DefaultStatesContext = createContext<ContextProps | null>(null)
+const defaultValue = {
+  modal: {},
+  setModal: () => {},
+  pushHistory: () => {}
+}
+
+const DefaultStatesContext = createContext<ContextProps>(defaultValue)
 
 const DefaultStatesProvider = ({ children }: DefaultStatesProps) => {
   // const [defaultState, setDefaultStates] = useState(true)
@@ -14,8 +21,13 @@ const DefaultStatesProvider = ({ children }: DefaultStatesProps) => {
     cancel: () => {}
   })
 
+  let history = useHistory()
+  const pushHistory = (to: string) => {
+    history.push(to)
+  }
+
   return (
-    <DefaultStatesContext.Provider value={{ modal, setModal }}>
+    <DefaultStatesContext.Provider value={{ modal, setModal, pushHistory }}>
       {children}
     </DefaultStatesContext.Provider>
   )

@@ -83,7 +83,7 @@ export const CustomModalBodyApp = styled(Modal.Body)`
 `
 
 export const CustomModalFooterApp = styled(Modal.Footer)`
-  background-color: ${colors.primaryDark};
+  background-color: ${colors.white};
   border: none;
   display: flex;
   justify-content: center;
