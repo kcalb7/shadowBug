@@ -7,10 +7,15 @@ import { DefaultStatesContext } from '../../contexts/defaultStates'
 export const Header = () => {
   const { pushHistory } = useContext(DefaultStatesContext)
 
+  const reset = () => {
+    localStorage.removeItem('bugs')
+    document.location.reload()
+  }
+
   return (
     <Container>
       <Row>
-        <Col sm={6} className={'justify-content-start'}>
+        <Col sm={5} className={'justify-content-start'}>
           <Button text={'Shadow Bugs'} onClick={() => pushHistory('/')} />
         </Col>
         <Col sm={3} className={'no-gutter'}>
@@ -18,6 +23,9 @@ export const Header = () => {
         </Col>
         <Col sm={3} className={'no-gutter'}>
           <Button text={'Quem somos'} onClick={() => pushHistory('/quem-somos')} />
+        </Col>
+        <Col sm={1} className={'no-gutter'}>
+          <Button text={'Reset'} onClick={() => reset()} />
         </Col>
       </Row>
     </Container>
