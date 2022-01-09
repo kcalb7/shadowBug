@@ -1,39 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { ColBugs, FrameBug } from '../../components'
 import { DefaultStatesContext } from '../../contexts/defaultStates'
 import { colors } from '../../utils/colors'
-import { bugs as BugObject } from '../../enums'
 import { categories } from '../../enums'
-import { BugBasicInfo, BugMinInfo, BugsContext as BugsContextType } from '../../types'
+import { BugsContext as BugsContextType } from '../../types'
 import { BugsContext } from '../../contexts/bug'
 
 const Home = () => {
-  const { list, setList, bugs, setBugs, shadows, setShadows, infos, setInfos }: BugsContextType =
-    useContext(BugsContext)
+  const { list, setList, bugs, shadows, infos }: BugsContextType = useContext(BugsContext)
   const [selected, setSelected] = useState(null)
 
   const { setModal }: any = useContext(DefaultStatesContext)
-
-  useEffect(() => {
-    setList(BugObject)
-    return prepare()
-  }, [list])
-
-  const prepare = () => {
-    let Bugs: BugMinInfo[] = []
-    let Shadows: BugMinInfo[] = []
-    let Infos: BugBasicInfo[] = []
-    BugObject.forEach(b => {
-      if (!b.matched) {
-        Bugs.push({ id: b.id, img: b.img['bug'] })
-        Shadows.push({ id: b.id, img: b.img['bugShadow'] })
-      } else Infos.push({ id: b.id, img: b.img['bugInfo'], categoryId: b.categoryId })
-    })
-    setBugs(Bugs)
-    setShadows(Shadows)
-    setInfos(Infos)
-  }
 
   const match = (id: string | null) => {
     const update = list.map(l => {

@@ -95,10 +95,10 @@ exports.baseURL = () => {
 }
 
 exports.handleErrors = error => {
-  console.log(error)
+  console.error(error)
 
   if (error.response && error.response.data && error.response.data.log) {
-    console.log('Erro:', error.response.data.log)
+    console.error('Erro:', error.response.data.log)
   }
 
   if (error.response && error.response.data && error.response.data.logout) {
