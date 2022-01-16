@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { bootstrapMax } from '../../utils/mediaQueries'
 
 const defaults = styled.div`
   width: 140px;
@@ -8,6 +9,11 @@ const defaults = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   -webkit-user-select: none;
+
+  @media ${bootstrapMax.sm} {
+    width: 80px;
+    height: 80px;
+  }
 `
 
 export const Frame = styled(defaults)`

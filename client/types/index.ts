@@ -62,6 +62,7 @@ export type FrameBugsProps = {
 export type ButtonProps = {
   text: string
   to?: string
+  nav?: boolean
   blank?: boolean
   onClick?: Function
 }

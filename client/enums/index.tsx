@@ -58,5 +58,22 @@ export const bugs: BugFullInfo[] = [
       bug: '/img/bugShadow/callipogon.png',
       bugInfo: '/img/bugInfo/callipogon.jpg'
     }
+  },
+  {
+    id: 3,
+    name: 'callipogon3',
+    nickname: '',
+    categoryId: 1,
+    location: 'São Sebastião do Paraíso, MG, Brasil',
+    coordinates: '21º 4’ 54’’ S    47º 1’ 40’’ W',
+    lat: null,
+    lng: null,
+    date: '22/X/2021',
+    matched: false,
+    img: {
+      bugShadow: '/img/bug/callipogon.jpg',
+      bug: '/img/bugShadow/callipogon.png',
+      bugInfo: '/img/bugInfo/callipogon.jpg'
+    }
   }
 ]
