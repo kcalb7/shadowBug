@@ -45,8 +45,7 @@ export type ColBugsProps = {
   children?: React.ReactNode
   draggable?: boolean
   bugs: BugMinInfo[]
-  onDragEnd?: Function
-  onDragOver?: Function
+  match?: Function
 }
 
 export type FrameBugsProps = {
@@ -54,8 +53,7 @@ export type FrameBugsProps = {
   matched?: boolean
   draggable?: boolean
   bug: BugMinInfo
-  onDragEnd?: Function
-  onDragOver?: Function
+  match?: Function
   onClick?: Function
 }
 
@@ -115,3 +113,9 @@ export interface BugsContext {
   setInfos: (value: BugBasicInfo[]) => void
 }
 // contexts end
+
+// item types
+export const ItemTypes = {
+  BUG: 'bug',
+  SHADOW: 'shadow'
+}

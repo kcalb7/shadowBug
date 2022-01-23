@@ -2,16 +2,10 @@ import React from 'react'
 import { ColBugsProps } from '../../types'
 import { FrameBug } from '../FrameBug'
 
-export const ColBugs = ({ draggable, bugs, onDragEnd, onDragOver }: ColBugsProps) => (
+export const ColBugs = ({ draggable, bugs, match }: ColBugsProps) => (
   <div>
     {bugs.map(b => (
-      <FrameBug
-        key={b.id}
-        draggable={draggable}
-        bug={b}
-        onDragEnd={onDragEnd}
-        onDragOver={onDragOver}
-      />
+      <FrameBug key={b.id} draggable={draggable} bug={b} match={match} />
     ))}
   </div>
 )

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../utils/colors'
 import { bootstrapMax } from '../../utils/mediaQueries'
 
 const defaults = styled.div`
@@ -18,6 +19,8 @@ const defaults = styled.div`
 
 export const Frame = styled(defaults)`
   cursor: ${({ draggable }) => (draggable ? 'pointer' : 'no-drop !important')};
+  border: 3px solid ${({ isOver }) => (isOver ? colors.secondaryLight.main : 'transparent')};
+
   &:not(:first-of-type) {
     margin-top: 20px;
   }
