@@ -13,7 +13,7 @@ const Home = () => {
   const { list, setList, bugs, shadows, infos }: BugsContextType = useContext(BugsContext)
   const [ids, setIds] = useState<{ yet: number[]; notYet: number[] }>({
     yet: [],
-    notYet: [1, 2, 3, 2, 1, 3]
+    notYet: bugs.map(b => b.id)
   })
 
   const { setModal }: any = useContext(DefaultStatesContext)
