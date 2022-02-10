@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { colors } from '../../utils/colors'
 
 export const Container = styled(BSContainer)`
-  padding: 80px 30px 0;
+  padding-top: 80px;
   height: 100vh;
   min-width: 313px;
-  // background-color: ${colors.primaryLight.main};
+  background-color: ${colors.white};
 `

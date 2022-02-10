@@ -1,5 +1,11 @@
 import React from 'react'
-import { useDrag, useDrop } from 'react-dnd'
+import {
+  useDrag,
+  useDrop
+  // ConnectDragPreview,
+  // ConnectDragSource,
+  // DragPreviewImage
+} from 'react-dnd'
 import { BugMinInfo, FrameBugsProps, ItemTypes } from '../../types'
 import { Frame, FrameMatched } from './styles'
 
@@ -10,13 +16,12 @@ export const FrameBug = ({ matched, draggable, bug, match, onClick }: FrameBugsP
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult<BugMinInfo>()
       if (item && dropResult && item.id === dropResult.id) {
-        console.log(`You dropped bug ${item.id} into shadow bug ${dropResult.id}!`)
+        console.info(`You dropped bug ${item.id} into shadow bug ${dropResult.id}!`)
         if (match) match(item.id)
       }
     },
     collect: monitor => ({
       isDragging: monitor.isDragging()
-      // handlerId: monitor.getHandlerId()
     })
   }))
 
@@ -34,6 +39,7 @@ export const FrameBug = ({ matched, draggable, bug, match, onClick }: FrameBugsP
 
   if (matched) return <FrameMatched value={bug.id} img={bug.img} onClick={onClick} />
 
+  // todo: make preview
   if (draggable)
     return (
       <Frame

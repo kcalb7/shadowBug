@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 const defaultValue = {
   modal: {},
-  setModal: () => {},
+  handleModal: () => {},
   pushHistory: () => {}
 }
 
@@ -16,10 +16,12 @@ const DefaultStatesProvider = ({ children }: DefaultStatesProps) => {
     title: '',
     bug: {},
     toggle: false,
-    onHide: () => {},
+    onHide: () => handleModal({ toggle: false }),
     confirm: () => {},
-    cancel: () => {}
+    cancel: () => handleModal({ toggle: false })
   })
+
+  const handleModal = (params: object) => setModal((prev: Modal) => ({ ...prev, ...params }))
 
   let history = useHistory()
   const pushHistory = (to: string) => {
@@ -27,7 +29,7 @@ const DefaultStatesProvider = ({ children }: DefaultStatesProps) => {
   }
 
   return (
-    <DefaultStatesContext.Provider value={{ modal, setModal, pushHistory }}>
+    <DefaultStatesContext.Provider value={{ modal, handleModal, pushHistory }}>
       {children}
     </DefaultStatesContext.Provider>
   )

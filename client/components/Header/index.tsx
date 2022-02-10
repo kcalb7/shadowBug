@@ -5,7 +5,7 @@ import { Button } from '../'
 
 export const Header = () => {
   const reset = () => {
-    localStorage.removeItem('bugs')
+    localStorage.removeItem('localBugs')
     document.location.reload()
   }
 

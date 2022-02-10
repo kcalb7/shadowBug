@@ -11,6 +11,11 @@ const defaults = styled.div`
   background-repeat: no-repeat;
   -webkit-user-select: none;
 
+  @media ${bootstrapMax.lg} {
+    width: 100px;
+    height: 100px;
+  }
+
   @media ${bootstrapMax.sm} {
     width: 80px;
     height: 80px;

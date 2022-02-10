@@ -26,13 +26,14 @@ export type BugBasicInfo = {
 export type BugFullInfo = {
   id: number
   name: string
+  date: string
+  agent: string
   nickname: string
   categoryId: number
   location: string
   coordinates: string
   lat: number | null
   lng: number | null
-  date: string
   matched: boolean
   img: BugImages
 }
@@ -94,7 +95,7 @@ export type DefaultStatesProps = {
 
 export interface DefaultStatesContext {
   modal: Modal | object
-  setModal: Function
+  handleModal: Function
   pushHistory: Function
 }
 
@@ -111,6 +112,7 @@ export interface BugsContext {
   setShadows: (value: BugMinInfo[]) => void
   infos: BugBasicInfo[]
   setInfos: (value: BugBasicInfo[]) => void
+  listBugs: Function
 }
 // contexts end
 
