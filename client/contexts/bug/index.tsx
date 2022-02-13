@@ -68,7 +68,11 @@ const BugsProvider = ({ children }: BugsProps) => {
       'localBugs',
       JSON.stringify({ list, bugs: Bugs, shadows: Shadows, infos: Infos })
     )
-    while (ids.notYet.length > 5 && ids.yet.length < 5) listBugs()
+    while (
+      (ids.notYet.length > 5 && ids.yet.length < 5) ||
+      (ids.notYet.length > 0 && ids.notYet.length < 5)
+    )
+      listBugs()
   }
 
   const _shuffle = (array: BugMinInfo[]) => {

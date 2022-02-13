@@ -76,7 +76,7 @@ const Game = () => {
           <div key={c.name} className={'mt-5'}>
             <Row>
               <Col className={'d-flex justify-content-center'}>
-                <h1 style={{ color: colors.primaryLight.text }}>{c.name}</h1>
+                <h3 style={{ color: colors.primaryLight.text }}>{c.name}</h3>
               </Col>
             </Row>
             <Row className={'mt-3'}>
