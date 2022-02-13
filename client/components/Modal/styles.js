@@ -61,11 +61,29 @@ export const CustomModalFooter = styled(Modal.Footer)`
 `
 
 export const Frame = styled.div`
+  min-width: 120px;
+  min-height: 120px;
+  max-width: 160px;
+  max-height: 160px;
   width: 100%;
-  height: 50%;
+  height: 100%;
   background-image: url(${({ img }) => img});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   -webkit-user-select: none;
+
+  @media ${bootstrapMax.md} {
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  @media ${bootstrapMax.xs} {
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 100px;
+    max-height: 100px;
+  }
 `

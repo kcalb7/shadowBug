@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react'
 import {
-  BugsProps,
+  ContextProps as BugsProps,
   BugsContext as ContextProps,
   BugFullInfo,
   BugMinInfo,
@@ -31,7 +31,8 @@ const defaultValue = {
   setShadows: () => {},
   infos: [],
   setInfos: () => {},
-  listBugs: () => {}
+  listBugs: () => {},
+  reset: () => {}
 }
 
 const BugsContext = createContext<ContextProps>(defaultValue)
@@ -101,6 +102,11 @@ const BugsProvider = ({ children }: BugsProps) => {
     setIds({ yet, notYet })
   }
 
+  const reset = () => {
+    localStorage.removeItem('localBugs')
+    document.location.reload()
+  }
+
   return (
     <BugsContext.Provider
       value={{
@@ -112,7 +118,8 @@ const BugsProvider = ({ children }: BugsProps) => {
         setShadows,
         infos,
         setInfos,
-        listBugs
+        listBugs,
+        reset
       }}>
       {children}
     </BugsContext.Provider>
