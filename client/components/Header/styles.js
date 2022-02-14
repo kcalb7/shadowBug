@@ -16,3 +16,23 @@ export const Col = styled(BSCol)`
   justify-content: center;
   align-items: center;
 `
+export const Hamburger = styled.div`
+  width: 35px;
+  height: 30px;
+  cursor: pointer;
+
+  div {
+    width: 35px;
+    height: 5px;
+    background-color: ${colors.white};
+    transition: all ease-in-out 0.2s;
+
+    &:not(:first-of-type) {
+      margin-top: 6px;
+    }
+  }
+
+  &:hover div {
+    background-color: ${colors.secondaryDark.main};
+  }
+`

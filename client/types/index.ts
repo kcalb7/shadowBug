@@ -77,7 +77,7 @@ export type Modal = {
 // components end
 
 // contexts
-export type AuthProps = {
+export type ContextProps = {
   children?: React.ReactNode
 }
 
@@ -89,18 +89,10 @@ export interface AuthContext {
   checkLogin: Function
 }
 
-export type DefaultStatesProps = {
-  children?: React.ReactNode
-}
-
 export interface DefaultStatesContext {
   modal: Modal | object
   handleModal: Function
   pushHistory: Function
-}
-
-export type BugsProps = {
-  children?: React.ReactNode
 }
 
 export interface BugsContext {
@@ -113,6 +105,13 @@ export interface BugsContext {
   infos: BugBasicInfo[]
   setInfos: (value: BugBasicInfo[]) => void
   listBugs: Function
+  reset: Function
+}
+
+export interface MenuContext {
+  show: boolean
+  handleMenu: () => void
+  onClose: () => void
 }
 // contexts end
 

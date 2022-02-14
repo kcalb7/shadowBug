@@ -1,5 +1,9 @@
 import React, { createContext, useState } from 'react'
-import { DefaultStatesProps, DefaultStatesContext as ContextProps, Modal } from '../../types'
+import {
+  ContextProps as DefaultStatesProps,
+  DefaultStatesContext as ContextProps,
+  Modal
+} from '../../types'
 import { useHistory } from 'react-router-dom'
 
 const defaultValue = {

@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import authServices from '../../services/auth'
 import jwt from 'jsonwebtoken'
-import { AuthProps, AuthContext as ContextProps } from '../../types'
+import { ContextProps as AuthProps, AuthContext as ContextProps } from '../../types'
 
 const AuthContext = createContext<ContextProps | null>(null)
 
