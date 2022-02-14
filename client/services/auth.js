@@ -1,4 +1,4 @@
-import { axiosDefault, handleErrors } from '../utils/defaults'
+import { axiosDefault, handleErrors } from '../utils/helpers'
 
 const authService = {
   login: async user => {
