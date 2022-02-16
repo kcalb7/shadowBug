@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { DndProvider } from 'react-dnd'
 import { TouchBackend } from 'react-dnd-touch-backend'
+import DOMPurify from 'dompurify'
 import { ColBugs, FrameBug } from '../../components'
-import { DefaultStatesContext } from '../../contexts/defaultStates'
+import { DefaultStatesContext, BugsContext } from '../../contexts/'
 import { colors } from '../../utils/colors'
 import { categories } from '../../enums'
 import { BugsContext as BugsContextType } from '../../types'
-import { BugsContext } from '../../contexts/bug'
 
 const Game = () => {
   const { list, setList, bugs, shadows, infos, listBugs }: BugsContextType = useContext(BugsContext)
@@ -79,7 +79,15 @@ const Game = () => {
                 <h3 style={{ color: colors.primaryLight.text }}>{c.name}</h3>
               </Col>
             </Row>
-            <Row className={'mt-3'}>
+            <Row className={'py-4'}>
+              <Col className={'d-flex justify-content-center'} style={{ textAlign: 'center' }}>
+                <p
+                  style={{ fontSize: 20 }}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(c.description) }}
+                />
+              </Col>
+            </Row>
+            <Row className={'pb-5'}>
               <Col xs={12} className={'d-flex flex-wrap justify-content-center'}>
                 {infos
                   .filter(l => l.categoryId === c.id)

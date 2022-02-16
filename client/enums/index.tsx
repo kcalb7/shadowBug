@@ -908,7 +908,7 @@ export const bugs: BugFullInfo[] = [
   },
   {
     id: 44,
-    name: 'Cupins',
+    name: 'Cupim',
     nickname: '',
     categoryId: 9,
     date: '22/X/2021',

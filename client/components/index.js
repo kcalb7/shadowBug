@@ -1,5 +1,6 @@
-export { Body } from './Body'
 export { Header } from './Header'
+export { Body } from './Body'
+export { Footer } from './Footer'
 export { Menu } from './Menu'
 export { ColBugs } from './ColBugs'
 export { FrameBug } from './FrameBug'

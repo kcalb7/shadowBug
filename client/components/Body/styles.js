@@ -4,7 +4,7 @@ import { colors } from '../../utils/colors'
 
 export const Container = styled(BSContainer)`
   padding-top: 80px;
-  height: 100vh;
+  min-height: 80vh;
   min-width: 313px;
   background-color: ${colors.white};
 `

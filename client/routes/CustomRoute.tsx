@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { Body, Header } from '../components'
+import { Header, Body, Footer } from '../components'
 import Modal from '../components/Modal'
 // import { CustomModal } from '../../components/Loading/styles';
 
@@ -17,6 +17,9 @@ const CustomRoute = ({ ...rest }) => {
   // const showAdminNavbar = () =>
   //   auth && !window.location.pathname.includes('login') && rest.path.includes('/admin');
 
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+
   return (
     <>
       {showHeader() && <Header />}
@@ -24,6 +27,7 @@ const CustomRoute = ({ ...rest }) => {
         <Modal />
         <Route exact={rest.exact} path={rest.path} component={rest.component} />
       </Body>
+      <Footer />
     </>
   )
 }
