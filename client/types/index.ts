@@ -4,6 +4,7 @@ import React from 'react'
 export type Category = {
   id: number
   name: string
+  description: string
 }
 
 export type BugImages = {
