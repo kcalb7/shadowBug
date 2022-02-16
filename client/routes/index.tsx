@@ -7,6 +7,7 @@ import Home from '../pages/home'
 import Game from '../pages/game'
 import Error from '../pages/error'
 import { Menu } from '../components'
+import AboutUs from '../pages/aboutUs'
 // import AdminLogin from '../pages/login'
 
 class Router extends Component {
@@ -20,6 +21,7 @@ class Router extends Component {
             <Switch>
               <CustomRoute exact path="/" component={Home} />
               <CustomRoute exact path="/sombras" component={Game} />
+              <CustomRoute exact path="/quem-somos" component={AboutUs} />
               {/*<CustomRoute exact path="/admin/login" component={AdminLogin} />*/}
               <CustomRoute path="/*" component={Error} />
             </Switch>

@@ -43,7 +43,7 @@ const Game = () => {
           <h1 style={{ color: colors.primaryLight.text }}>Jogo das sombras</h1>
         </Col>
       </Row>
-      <Row className={'my-5'}>
+      <Row className={'mt-5'}>
         <Col className={'d-flex justify-content-center'}>
           <h5 style={{ color: colors.primaryLight.text }}>
             {bugs.length
@@ -52,7 +52,7 @@ const Game = () => {
           </h5>
         </Col>
       </Row>
-      <Row>
+      <Row className={'mt-5 pb-5'}>
         <Col className={'d-flex justify-content-start justify-content-md-center'}>
           <ColBugs draggable bugs={bugs} match={match} />
         </Col>
